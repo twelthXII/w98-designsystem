@@ -1,0 +1,17 @@
+/*
+ * W98 ASCII Design System — single stylesheet entry point.
+ *
+ * Import this once per application:
+ *   import 'w98-ascii-design-system/styles.css';
+ *
+ * Order matters: tokens define the custom properties every later rule reads.
+ */
+@import './tokens.css';
+@import './base.css';
+@import './motion.css';
+@import './components/window.css';
+@import './components/controls.css';
+@import './components/navigation.css';
+@import './components/desktop.css';
+@import './components/ascii.css';
+@import './components/compositions.css';

@@ -1,0 +1,64 @@
+/* Development shell only — not part of the published design system. */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--w98-color-surface);
+}
+
+.playground {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: var(--w98-space-16);
+  min-height: 100vh;
+  padding: var(--w98-space-16);
+}
+
+.playground__nav {
+  position: sticky;
+  top: var(--w98-space-16);
+  align-self: start;
+  height: calc(100vh - var(--w98-space-32));
+}
+
+.playground__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w98-space-2);
+}
+
+.playground__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--w98-space-8);
+  padding: var(--w98-space-4) var(--w98-space-6);
+  font-size: var(--w98-type-size-ui-sm);
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: default;
+}
+
+.playground__item.is-active {
+  color: var(--w98-color-select-ink);
+  background: var(--w98-color-select-bg);
+}
+
+.playground__stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w98-space-12);
+  min-width: 0;
+}
+
+.playground__summary {
+  font-size: var(--w98-type-size-ui-xs);
+  color: var(--w98-color-ink-muted);
+}
+
+.playground__frame {
+  min-width: 0;
+  max-width: 1100px;
+}

@@ -1,0 +1,188 @@
+/* ASCII layer: AsciiCanvas, AsciiText, AsciiIllustration, AsciiBadge */
+
+/* --- AsciiCanvas ---------------------------------------------------------- */
+.w98-ascii-canvas {
+  --w98-ascii-size: var(--w98-ascii-size-md);
+  display: flex;
+  font-family: var(--w98-type-family-mono);
+  font-size: var(--w98-ascii-size);
+  line-height: var(--w98-ascii-leading);
+  letter-spacing: var(--w98-ascii-tracking);
+  color: var(--w98-color-ascii-ink);
+}
+
+.w98-ascii-canvas--xs {
+  --w98-ascii-size: var(--w98-ascii-size-xs);
+}
+.w98-ascii-canvas--sm {
+  --w98-ascii-size: var(--w98-ascii-size-sm);
+}
+.w98-ascii-canvas--lg {
+  --w98-ascii-size: var(--w98-ascii-size-lg);
+}
+.w98-ascii-canvas--xl {
+  --w98-ascii-size: var(--w98-ascii-size-xl);
+}
+
+.w98-ascii-canvas__pre {
+  margin: 0;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  white-space: pre;
+  tab-size: 2;
+}
+
+/* Role controls optical weight — this is what keeps ASCII subordinate. */
+.w98-ascii-canvas--ambient {
+  opacity: var(--w98-ascii-opacity-ambient);
+}
+.w98-ascii-canvas--decorative {
+  opacity: var(--w98-ascii-opacity-decorative);
+}
+.w98-ascii-canvas--illustrative,
+.w98-ascii-canvas--semantic {
+  opacity: var(--w98-ascii-opacity-primary);
+}
+
+.w98-ascii-canvas--field {
+  padding: var(--w98-space-8);
+  background: var(--w98-color-field);
+  box-shadow: var(--w98-bevel-field);
+}
+
+.w98-ascii-canvas--terminal {
+  padding: var(--w98-space-8);
+  color: var(--w98-color-ascii-surface-ink);
+  background: var(--w98-color-ascii-surface);
+  box-shadow: var(--w98-bevel-field);
+}
+
+.w98-ascii-canvas--align-start {
+  justify-content: flex-start;
+}
+.w98-ascii-canvas--align-center {
+  justify-content: center;
+  align-items: center;
+}
+.w98-ascii-canvas--align-end {
+  justify-content: flex-end;
+}
+
+/* --- AsciiText ------------------------------------------------------------ */
+.w98-ascii-text {
+  --w98-ascii-size: var(--w98-ascii-size-md);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4ch;
+  font-family: var(--w98-type-family-mono);
+  font-size: var(--w98-ascii-size);
+  line-height: var(--w98-ascii-leading);
+  letter-spacing: var(--w98-ascii-tracking);
+}
+
+.w98-ascii-text--xs {
+  --w98-ascii-size: var(--w98-ascii-size-xs);
+}
+.w98-ascii-text--sm {
+  --w98-ascii-size: var(--w98-ascii-size-sm);
+}
+.w98-ascii-text--lg {
+  --w98-ascii-size: var(--w98-ascii-size-lg);
+}
+.w98-ascii-text--xl {
+  --w98-ascii-size: var(--w98-ascii-size-xl);
+}
+
+.w98-ascii-text--label {
+  text-transform: uppercase;
+  letter-spacing: var(--w98-type-tracking-caps);
+}
+
+.w98-ascii-text--path {
+  color: var(--w98-color-ink-muted);
+}
+
+.w98-ascii-text--terminal {
+  padding: 0 0.5ch;
+  color: var(--w98-color-ascii-surface-ink);
+  background: var(--w98-color-ascii-surface);
+}
+
+.w98-ascii-text--ambient {
+  opacity: var(--w98-ascii-opacity-ambient);
+}
+.w98-ascii-text--decorative {
+  opacity: var(--w98-ascii-opacity-decorative);
+}
+
+.w98-ascii-text__prefix {
+  opacity: 0.7;
+}
+
+/* --- AsciiIllustration ---------------------------------------------------- */
+.w98-ascii-illustration {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--w98-space-6);
+  margin: 0;
+}
+
+.w98-ascii-illustration__caption {
+  font-family: var(--w98-type-family-ui);
+  font-size: var(--w98-type-size-ui-xs);
+  color: var(--w98-color-ink-muted);
+}
+
+/* --- AsciiBadge ----------------------------------------------------------- */
+.w98-ascii-badge {
+  --w98-ascii-size: var(--w98-ascii-size-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25ch;
+  font-family: var(--w98-type-family-mono);
+  font-size: var(--w98-ascii-size);
+  line-height: var(--w98-ascii-leading);
+  white-space: nowrap;
+}
+
+.w98-ascii-badge--xs {
+  --w98-ascii-size: var(--w98-ascii-size-xs);
+}
+.w98-ascii-badge--md {
+  --w98-ascii-size: var(--w98-ascii-size-md);
+}
+.w98-ascii-badge--lg {
+  --w98-ascii-size: var(--w98-ascii-size-lg);
+}
+
+.w98-ascii-badge__bracket {
+  opacity: 0.6;
+}
+
+.w98-ascii-badge--well {
+  padding: var(--w98-space-2) var(--w98-space-6);
+  box-shadow: var(--w98-bevel-engraved);
+}
+
+.w98-ascii-badge--terminal {
+  padding: var(--w98-space-2) var(--w98-space-6);
+  color: var(--w98-color-ascii-surface-ink);
+  background: var(--w98-color-ascii-surface);
+}
+
+.w98-ascii-badge--info {
+  color: var(--w98-color-status-info);
+}
+.w98-ascii-badge--ok {
+  color: var(--w98-color-status-ok);
+}
+.w98-ascii-badge--warning {
+  color: var(--w98-color-status-warning);
+}
+.w98-ascii-badge--error {
+  color: var(--w98-color-status-error);
+}
+.w98-ascii-badge--question {
+  color: var(--w98-color-status-info);
+}

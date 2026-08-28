@@ -1,0 +1,284 @@
+/* Window chrome: Window, TitleBar, Dialog, ErrorDialog, SystemMessage */
+
+/* --- Window --------------------------------------------------------------- */
+.w98-window {
+  --w98-window-padding: var(--w98-space-8);
+  display: flex;
+  flex-direction: column;
+  min-width: var(--w98-layout-window-min-width);
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-window);
+  padding: var(--w98-space-2);
+}
+
+.w98-window--sm {
+  --w98-window-padding: var(--w98-space-6);
+  font-size: var(--w98-type-size-ui-xs);
+}
+
+.w98-window--md {
+  --w98-window-padding: var(--w98-space-12);
+  font-size: var(--w98-type-size-ui-sm);
+}
+
+.w98-window--lg {
+  --w98-window-padding: var(--w98-space-24);
+  font-size: var(--w98-type-size-ui-md);
+  padding: var(--w98-space-4);
+}
+
+.w98-window--panel {
+  box-shadow: var(--w98-bevel-raised);
+}
+
+.w98-window--frame {
+  padding: var(--w98-border-width-frame);
+  box-shadow: var(--w98-bevel-window);
+}
+
+.w98-window--frame .w98-window__body {
+  padding: 0;
+}
+
+.w98-window--elevated {
+  box-shadow:
+    var(--w98-bevel-window),
+    var(--w98-shadow-drop-window);
+}
+
+.w98-window--fill {
+  width: 100%;
+  height: 100%;
+}
+
+.w98-window.is-inactive {
+  color: var(--w98-color-ink-muted);
+}
+
+.w98-window__menu,
+.w98-window__toolbar {
+  flex: none;
+}
+
+.w98-window__toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--w98-space-2);
+  min-height: var(--w98-layout-toolbar-height);
+  padding: var(--w98-space-2);
+  box-shadow: var(--w98-bevel-etched);
+}
+
+.w98-window__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--w98-window-padding);
+}
+
+.w98-window__body--flush {
+  padding: 0;
+}
+
+.w98-window__status {
+  flex: none;
+  margin-top: var(--w98-space-2);
+}
+
+/* --- TitleBar ------------------------------------------------------------- */
+.w98-title-bar {
+  --w98-title-height: var(--w98-layout-title-bar-height);
+  --w98-title-button: var(--w98-layout-title-button-size);
+  display: flex;
+  align-items: center;
+  gap: var(--w98-space-4);
+  min-height: var(--w98-title-height);
+  padding: var(--w98-space-2) var(--w98-space-2) var(--w98-space-2) var(--w98-space-4);
+  font-size: var(--w98-type-size-ui-xs);
+  font-weight: var(--w98-type-weight-bold);
+  color: var(--w98-color-title-ink);
+  user-select: none;
+}
+
+.w98-title-bar--active {
+  background: linear-gradient(
+    90deg,
+    var(--w98-color-title-active-start),
+    var(--w98-color-title-active-end)
+  );
+}
+
+.w98-title-bar--inactive {
+  background: linear-gradient(
+    90deg,
+    var(--w98-color-title-inactive-start),
+    var(--w98-color-title-inactive-end)
+  );
+  color: var(--w98-color-title-ink-inactive);
+}
+
+.w98-title-bar--sm {
+  --w98-title-height: 16px;
+  --w98-title-button: 12px;
+  font-size: var(--w98-type-size-ui-xs);
+}
+
+.w98-title-bar--lg {
+  --w98-title-height: var(--w98-layout-title-bar-height-lg);
+  --w98-title-button: var(--w98-layout-title-button-size-lg);
+  font-size: var(--w98-type-size-ui-md);
+  padding: var(--w98-space-4) var(--w98-space-4) var(--w98-space-4) var(--w98-space-8);
+}
+
+.w98-title-bar__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+}
+
+.w98-title-bar__title {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w98-title-bar__meta {
+  flex: none;
+  font-weight: var(--w98-type-weight-regular);
+  opacity: 0.85;
+}
+
+.w98-title-bar__controls {
+  display: inline-flex;
+  flex: none;
+  gap: var(--w98-space-2);
+}
+
+.w98-title-bar__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w98-title-button);
+  height: var(--w98-title-button);
+  padding: 0;
+  font-size: calc(var(--w98-title-button) * 0.55);
+  line-height: 1;
+  color: var(--w98-color-ink);
+  background: var(--w98-color-surface);
+  border: 0;
+  box-shadow: var(--w98-bevel-raised);
+  cursor: default;
+}
+
+.w98-title-bar__control:active {
+  box-shadow: var(--w98-bevel-pressed);
+}
+
+.w98-title-bar__control--close {
+  margin-left: var(--w98-space-2);
+}
+
+/* --- Dialog --------------------------------------------------------------- */
+.w98-dialog {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  padding: var(--w98-space-2);
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-window);
+}
+
+.w98-dialog--elevated {
+  box-shadow:
+    var(--w98-bevel-window),
+    var(--w98-shadow-drop-window);
+}
+
+.w98-dialog__body {
+  display: flex;
+  gap: var(--w98-space-16);
+  padding: var(--w98-space-16) var(--w98-space-16) var(--w98-space-12);
+}
+
+.w98-dialog--lg .w98-dialog__body {
+  gap: var(--w98-space-24);
+  padding: var(--w98-space-24);
+}
+
+.w98-dialog__icon {
+  flex: none;
+}
+
+.w98-dialog__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w98-space-6);
+  min-width: 0;
+}
+
+.w98-dialog__message {
+  font-size: var(--w98-type-size-ui-sm);
+  line-height: var(--w98-type-leading-ui);
+}
+
+.w98-dialog--lg .w98-dialog__message {
+  font-size: var(--w98-type-size-ui-lg);
+}
+
+.w98-dialog__detail {
+  font-size: var(--w98-type-size-ui-xs);
+  color: var(--w98-color-ink-muted);
+}
+
+.w98-dialog__code {
+  font-family: var(--w98-type-family-mono);
+  font-size: var(--w98-type-size-ui-xs);
+  line-height: var(--w98-ascii-leading);
+  color: var(--w98-color-ink-muted);
+}
+
+.w98-dialog__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--w98-space-8);
+  padding: var(--w98-space-8) var(--w98-space-16) var(--w98-space-16);
+}
+
+/* --- SystemMessage -------------------------------------------------------- */
+.w98-system-message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--w98-space-8);
+  font-size: var(--w98-type-size-ui-sm);
+}
+
+.w98-system-message--inline {
+  padding: var(--w98-space-4) 0;
+}
+
+.w98-system-message--banner {
+  padding: var(--w98-space-8) var(--w98-space-12);
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-engraved);
+}
+
+.w98-system-message__icon {
+  flex: none;
+}
+
+.w98-system-message__label {
+  margin-right: var(--w98-space-4);
+  font-weight: var(--w98-type-weight-bold);
+}
+
+.w98-system-message--error .w98-system-message__label {
+  color: var(--w98-color-status-error);
+}
+
+.w98-system-message--warning .w98-system-message__label {
+  color: var(--w98-color-status-warning);
+}
+
+.w98-system-message--ok .w98-system-message__label {
+  color: var(--w98-color-status-ok);
+}

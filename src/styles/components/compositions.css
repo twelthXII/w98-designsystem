@@ -1,0 +1,284 @@
+/* Composition primitives: DesktopCanvas, WindowStack, EditorialWindow, SplitWindow, SystemPanel, AsciiPanel */
+
+/* --- DesktopCanvas -------------------------------------------------------- */
+.w98-desktop-canvas {
+  --w98-canvas-gutter: var(--w98-layout-canvas-gutter);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.w98-desktop-canvas--gutter-none {
+  --w98-canvas-gutter: 0px;
+}
+.w98-desktop-canvas--gutter-sm {
+  --w98-canvas-gutter: var(--w98-space-16);
+}
+.w98-desktop-canvas--gutter-lg {
+  --w98-canvas-gutter: var(--w98-layout-canvas-gutter-lg);
+}
+
+.w98-desktop-canvas--desktop {
+  background: var(--w98-color-desktop);
+}
+.w98-desktop-canvas--desktop-alt {
+  background: var(--w98-color-desktop-alt);
+}
+.w98-desktop-canvas--system {
+  background: var(--w98-color-surface);
+}
+.w98-desktop-canvas--paper {
+  background: var(--w98-color-paper);
+}
+.w98-desktop-canvas--void {
+  background: var(--w98-color-void);
+  color: var(--w98-color-ascii-surface-ink);
+}
+
+.w98-desktop-canvas__stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--w98-canvas-gutter);
+}
+
+/* `free` is the default: children are placed by coordinate. */
+.w98-desktop-canvas--flow .w98-desktop-canvas__stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w98-space-24);
+}
+
+.w98-desktop-canvas--center .w98-desktop-canvas__stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.w98-desktop-canvas__taskbar {
+  flex: none;
+  z-index: var(--w98-z-toolbar);
+  padding: var(--w98-space-2);
+  background: var(--w98-color-surface);
+  box-shadow: inset 0 1px var(--w98-color-bevel-light);
+}
+
+/* --- WindowStack ---------------------------------------------------------- */
+.w98-window-stack {
+  position: relative;
+  display: grid;
+}
+
+.w98-window-stack__item {
+  grid-area: 1 / 1;
+}
+
+/* --- EditorialWindow ------------------------------------------------------ */
+.w98-editorial-window__grid {
+  display: grid;
+  gap: var(--w98-space-32);
+}
+
+.w98-editorial-window--split .w98-editorial-window__grid {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.w98-editorial-window__lead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w98-space-16);
+  min-width: 0;
+}
+
+.w98-editorial-window__eyebrow {
+  font-size: var(--w98-type-size-ui-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--w98-type-tracking-caps);
+  color: var(--w98-color-ink-muted);
+}
+
+.w98-editorial-window__headline {
+  font-family: var(--w98-type-family-display);
+  font-weight: var(--w98-type-weight-bold);
+  font-size: var(--w98-type-size-display-lg);
+  line-height: var(--w98-type-leading-display);
+  letter-spacing: var(--w98-type-tracking-display);
+  text-wrap: balance;
+}
+
+.w98-editorial-window__headline--md {
+  font-size: var(--w98-type-size-display-md);
+}
+.w98-editorial-window__headline--xl {
+  font-size: var(--w98-type-size-display-xl);
+}
+.w98-editorial-window__headline--2xl {
+  font-size: var(--w98-type-size-display-2xl);
+}
+
+.w98-editorial-window__standfirst {
+  max-width: 48ch;
+  font-size: var(--w98-type-size-ui-lg);
+  line-height: var(--w98-type-leading-prose);
+}
+
+.w98-editorial-window__body {
+  max-width: 62ch;
+  font-size: var(--w98-type-size-ui-md);
+  line-height: var(--w98-type-leading-prose);
+}
+
+.w98-editorial-window__aside {
+  min-width: 0;
+}
+
+.w98-editorial-window__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--w98-space-12);
+  margin-top: var(--w98-space-32);
+}
+
+/* --- SplitWindow ---------------------------------------------------------- */
+.w98-split-window__grid {
+  display: grid;
+  height: 100%;
+  min-height: 0;
+}
+
+.w98-split-window--vertical .w98-split-window__grid {
+  grid-auto-flow: row;
+}
+
+.w98-split-window__pane {
+  min-width: 0;
+  min-height: 0;
+  padding: var(--w98-space-12);
+  overflow: hidden;
+}
+
+.w98-split-window__pane--field {
+  background: var(--w98-color-field);
+  box-shadow: var(--w98-bevel-field);
+}
+
+.w98-split-window__pane--terminal {
+  color: var(--w98-color-ascii-surface-ink);
+  background: var(--w98-color-ascii-surface);
+  box-shadow: var(--w98-bevel-field);
+}
+
+.w98-split-window__splitter {
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-etched);
+}
+
+.w98-split-window--horizontal .w98-split-window__splitter {
+  width: var(--w98-space-4);
+}
+
+.w98-split-window--vertical .w98-split-window__splitter {
+  height: var(--w98-space-4);
+}
+
+/* --- SystemPanel ---------------------------------------------------------- */
+.w98-system-panel {
+  position: relative;
+  display: flex;
+  padding: var(--w98-space-16);
+  background: var(--w98-color-surface);
+}
+
+.w98-system-panel--stack {
+  flex-direction: column;
+}
+
+.w98-system-panel--row {
+  flex-direction: row;
+  align-items: center;
+}
+
+.w98-system-panel--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.w98-system-panel--align-start {
+  align-items: flex-start;
+}
+.w98-system-panel--align-center {
+  align-items: center;
+}
+.w98-system-panel--align-end {
+  align-items: flex-end;
+}
+
+.w98-system-panel--group {
+  box-shadow: var(--w98-bevel-etched);
+}
+
+.w98-system-panel--raised {
+  box-shadow: var(--w98-bevel-raised);
+}
+
+.w98-system-panel--toolbar {
+  padding: var(--w98-space-4);
+  box-shadow: var(--w98-bevel-raised);
+}
+
+.w98-system-panel--well {
+  box-shadow: var(--w98-bevel-field);
+  background: var(--w98-color-field);
+}
+
+.w98-system-panel--lg {
+  padding: var(--w98-space-32);
+}
+
+/* The group label sits welded into the top border, as in a properties dialog. */
+.w98-system-panel--group .w98-system-panel__label {
+  position: absolute;
+  top: calc(var(--w98-space-8) * -1);
+  left: var(--w98-space-8);
+  padding: 0 var(--w98-space-4);
+  font-size: var(--w98-type-size-ui-xs);
+  background: var(--w98-color-surface);
+}
+
+.w98-system-panel__label {
+  font-size: var(--w98-type-size-ui-xs);
+}
+
+/* --- AsciiPanel ----------------------------------------------------------- */
+.w98-ascii-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w98-space-6);
+  min-width: 0;
+}
+
+.w98-ascii-panel__label {
+  font-size: var(--w98-type-size-ui-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--w98-type-tracking-caps);
+  color: var(--w98-color-ink-muted);
+}
+
+.w98-ascii-panel__body {
+  display: flex;
+  min-width: 0;
+}
+
+.w98-ascii-panel__body > .w98-ascii-canvas {
+  flex: 1 1 auto;
+}
+
+.w98-ascii-panel__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--w98-space-8);
+  font-size: var(--w98-type-size-ui-xs);
+}

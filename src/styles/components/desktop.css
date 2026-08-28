@@ -1,0 +1,141 @@
+/* Desktop objects: DesktopIcon, Cursor, PixelIconContainer */
+
+/* --- PixelIconContainer --------------------------------------------------- */
+.w98-pixel-icon {
+  --w98-pixel-icon-size: var(--w98-layout-icon-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w98-pixel-icon-size);
+  height: var(--w98-pixel-icon-size);
+  flex: none;
+}
+
+.w98-pixel-icon--sm {
+  --w98-pixel-icon-size: var(--w98-layout-icon-sm);
+}
+
+.w98-pixel-icon--lg {
+  --w98-pixel-icon-size: var(--w98-layout-icon-lg);
+}
+
+.w98-pixel-icon--xl {
+  --w98-pixel-icon-size: 96px;
+}
+
+.w98-pixel-icon__glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: calc(var(--w98-pixel-icon-size) * 0.62);
+  font-weight: var(--w98-type-weight-bold);
+  line-height: 1;
+}
+
+.w98-pixel-icon--raised {
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-raised);
+}
+
+.w98-pixel-icon--sunken {
+  background: var(--w98-color-field);
+  box-shadow: var(--w98-bevel-field);
+}
+
+.w98-pixel-icon--square .w98-pixel-icon__glyph {
+  color: var(--w98-color-ink-inverse);
+  background: var(--w98-color-ink);
+}
+
+.w98-pixel-icon--round .w98-pixel-icon__glyph {
+  color: var(--w98-color-ink-inverse);
+  background: var(--w98-color-ink);
+  border-radius: 50%;
+}
+
+.w98-pixel-icon--info .w98-pixel-icon__glyph {
+  background: var(--w98-color-status-info);
+}
+
+.w98-pixel-icon--ok .w98-pixel-icon__glyph {
+  background: var(--w98-color-status-ok);
+}
+
+.w98-pixel-icon--warning .w98-pixel-icon__glyph {
+  color: var(--w98-color-ink);
+  background: var(--w98-color-highlight);
+}
+
+.w98-pixel-icon--error .w98-pixel-icon__glyph {
+  background: var(--w98-color-status-error);
+}
+
+.w98-pixel-icon--question .w98-pixel-icon__glyph {
+  background: var(--w98-color-status-info);
+}
+
+/* --- DesktopIcon ---------------------------------------------------------- */
+.w98-desktop-icon {
+  --w98-desktop-icon-width: 76px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--w98-space-4);
+  width: var(--w98-desktop-icon-width);
+  padding: var(--w98-space-4);
+  background: none;
+  border: 0;
+  cursor: default;
+}
+
+.w98-desktop-icon--sm {
+  --w98-desktop-icon-width: 60px;
+}
+
+.w98-desktop-icon--lg {
+  --w98-desktop-icon-width: 120px;
+}
+
+.w98-desktop-icon__label {
+  padding: 0 var(--w98-space-2);
+  font-size: var(--w98-type-size-ui-xs);
+  text-align: center;
+  line-height: var(--w98-type-leading-ui);
+}
+
+.w98-desktop-icon--desktop .w98-desktop-icon__label {
+  color: var(--w98-color-ink-inverse);
+  text-shadow: 1px 1px 0 var(--w98-color-void);
+}
+
+.w98-desktop-icon--panel .w98-desktop-icon__label {
+  color: var(--w98-color-ink);
+}
+
+.w98-desktop-icon.is-selected .w98-desktop-icon__label {
+  color: var(--w98-color-select-ink);
+  background: var(--w98-color-select-bg);
+  text-shadow: none;
+  outline: var(--w98-border-focus-style);
+}
+
+.w98-desktop-icon.is-selected .w98-desktop-icon__art {
+  opacity: 0.75;
+}
+
+/* --- Cursor --------------------------------------------------------------- */
+.w98-cursor {
+  display: inline-block;
+  z-index: var(--w98-z-cursor);
+  pointer-events: none;
+}
+
+.w98-cursor__svg {
+  display: block;
+}
+
+.w98-cursor--shadow {
+  filter: drop-shadow(2px 2px 0 var(--w98-color-shadow-hard));
+}

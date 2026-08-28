@@ -1,0 +1,255 @@
+/*
+ * W98 ASCII Design System — motion utilities
+ *
+ * These classes are the *shippable* part of the motion language: short,
+ * self-contained CSS animations for the effects that do not need a timeline.
+ * Sequenced motion (cursor travel, window choreography) is specified in
+ * `src/motion` and driven by the composition, not by this package.
+ *
+ * Every class must resolve to a legible static state under reduced motion.
+ */
+
+/* --- ACTIVE -------------------------------------------------------------- */
+
+@keyframes w98-window-open {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.w98-motion-window-open {
+  animation: w98-window-open var(--w98-motion-duration-window) var(--w98-motion-ease-open) both;
+  transform-origin: top left;
+}
+
+@keyframes w98-window-close {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.w98-motion-window-close {
+  animation: w98-window-close var(--w98-motion-duration-base) var(--w98-motion-ease-close) both;
+  transform-origin: top left;
+}
+
+@keyframes w98-dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.w98-motion-dialog {
+  animation: w98-dialog-in var(--w98-motion-duration-fast) var(--w98-motion-ease-open) both;
+}
+
+@keyframes w98-click {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.88);
+  }
+}
+
+.w98-motion-click {
+  animation: w98-click var(--w98-motion-duration-tap) var(--w98-motion-ease-ui) both;
+}
+
+.w98-motion-press {
+  box-shadow: var(--w98-bevel-pressed);
+  transform: translate(1px, 1px);
+}
+
+@keyframes w98-dropdown {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.w98-motion-dropdown {
+  animation: w98-dropdown var(--w98-motion-duration-fast) var(--w98-motion-ease-ui) both;
+}
+
+/* Stepped progress. Drive the end value with a CSS variable per composition. */
+@keyframes w98-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--w98-motion-progress-target, 100%);
+  }
+}
+
+.w98-motion-progress {
+  animation: w98-progress var(--w98-motion-duration-sequence) var(--w98-motion-step-12) both;
+}
+
+/* Typing: a character-stepped reveal. Set --w98-motion-typing-chars to the
+   character count so the steps land exactly on cell boundaries. */
+@keyframes w98-typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: calc(var(--w98-motion-typing-chars, 20) * 1ch);
+  }
+}
+
+.w98-motion-typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: w98-typing var(--w98-motion-duration-sequence)
+    steps(var(--w98-motion-typing-chars, 20), end) both;
+}
+
+@keyframes w98-select-sweep {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+.w98-motion-select {
+  background-image: linear-gradient(var(--w98-color-select-bg), var(--w98-color-select-bg));
+  background-repeat: no-repeat;
+  animation: w98-select-sweep var(--w98-motion-duration-base) var(--w98-motion-step-12) both;
+}
+
+/* --- PASSIVE ------------------------------------------------------------- */
+
+@keyframes w98-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.w98-motion-blink,
+.w98-motion-caret {
+  animation: w98-blink var(--w98-motion-blink-rate) var(--w98-motion-step-1) infinite;
+}
+
+@keyframes w98-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  47% {
+    opacity: 0.94;
+  }
+  52% {
+    opacity: 1;
+  }
+  71% {
+    opacity: 0.96;
+  }
+}
+
+.w98-motion-flicker {
+  animation: w98-flicker var(--w98-motion-duration-ambient-slow) var(--w98-motion-step-12) infinite;
+}
+
+@keyframes w98-indicator {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.w98-motion-indicator {
+  animation: w98-indicator var(--w98-motion-duration-ambient) var(--w98-motion-step-2) infinite;
+}
+
+@keyframes w98-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -100px;
+  }
+}
+
+.w98-motion-drift {
+  animation: w98-drift var(--w98-motion-duration-ambient-drift) var(--w98-motion-ease-linear) infinite;
+  opacity: var(--w98-ascii-opacity-ambient);
+}
+
+@keyframes w98-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.w98-motion-marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: w98-marquee var(--w98-motion-duration-ambient-drift) var(--w98-motion-ease-linear) infinite;
+}
+
+/* Character cycling and ASCII frame loops swap *content*, which CSS cannot do
+   generically. They are specified in src/motion/passive.ts and driven by the
+   composition through the `frames` / `frameIndex` props. These classes only
+   carry the timing contract. */
+.w98-motion-char-cycle,
+.w98-motion-ascii-loop {
+  --w98-motion-frame-duration: var(--w98-motion-duration-ambient);
+  --w98-motion-frame-easing: var(--w98-motion-step-8);
+}
+
+/* --- reduced motion ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .w98-motion-window-open,
+  .w98-motion-window-close,
+  .w98-motion-dialog,
+  .w98-motion-click,
+  .w98-motion-dropdown,
+  .w98-motion-progress,
+  .w98-motion-typing,
+  .w98-motion-select,
+  .w98-motion-blink,
+  .w98-motion-caret,
+  .w98-motion-flicker,
+  .w98-motion-indicator,
+  .w98-motion-drift,
+  .w98-motion-marquee {
+    animation: none !important;
+    opacity: 1;
+    width: auto;
+    clip-path: none;
+    transform: none;
+    background-size: 100% 100%;
+  }
+}

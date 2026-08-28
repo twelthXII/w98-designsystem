@@ -1,0 +1,423 @@
+/* Controls: Button, IconButton, Checkbox, Radio, TextInput, ProgressBar, Scrollbar */
+
+/* --- Button --------------------------------------------------------------- */
+.w98-button {
+  --w98-control-height: var(--w98-layout-control-height);
+  --w98-control-padding: var(--w98-space-12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--w98-layout-control-min-width);
+  min-height: var(--w98-control-height);
+  padding: 0 var(--w98-control-padding);
+  font-size: var(--w98-type-size-ui-sm);
+  color: var(--w98-color-ink);
+  background: var(--w98-color-surface);
+  border: 0;
+  box-shadow: var(--w98-bevel-raised);
+  cursor: default;
+  user-select: none;
+}
+
+.w98-button--sm {
+  --w98-control-height: var(--w98-layout-control-height-sm);
+  --w98-control-padding: var(--w98-space-8);
+  min-width: 0;
+  font-size: var(--w98-type-size-ui-xs);
+}
+
+.w98-button--lg {
+  --w98-control-height: var(--w98-layout-control-height-lg);
+  --w98-control-padding: var(--w98-space-24);
+  font-size: var(--w98-type-size-ui-lg);
+}
+
+.w98-button__inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w98-space-6);
+}
+
+/* The press is instant and moves the label 1px down-right — no transition. */
+.w98-button:active .w98-button__inner,
+.w98-button.is-pressed .w98-button__inner {
+  transform: translate(1px, 1px);
+}
+
+.w98-button:active,
+.w98-button.is-pressed {
+  box-shadow: var(--w98-bevel-pressed);
+}
+
+.w98-button:disabled {
+  color: var(--w98-color-ink-disabled);
+  text-shadow: 1px 1px 0 var(--w98-color-ink-emboss);
+}
+
+.w98-button--default-action {
+  box-shadow:
+    var(--w98-bevel-raised),
+    0 0 0 1px var(--w98-color-ink);
+}
+
+.w98-button--flat {
+  min-width: 0;
+  box-shadow: none;
+}
+
+.w98-button--flat:hover {
+  box-shadow: var(--w98-bevel-raised);
+}
+
+.w98-button--ghost {
+  min-width: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.w98-button--block {
+  display: flex;
+  width: 100%;
+}
+
+/* --- IconButton ----------------------------------------------------------- */
+.w98-icon-button {
+  --w98-icon-button-size: var(--w98-layout-control-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w98-icon-button-size);
+  height: var(--w98-icon-button-size);
+  padding: 0;
+  font-size: calc(var(--w98-icon-button-size) * 0.45);
+  line-height: 1;
+  color: var(--w98-color-ink);
+  background: var(--w98-color-surface);
+  border: 0;
+  box-shadow: var(--w98-bevel-raised);
+  cursor: default;
+}
+
+.w98-icon-button--sm {
+  --w98-icon-button-size: var(--w98-layout-control-height-sm);
+}
+
+.w98-icon-button--lg {
+  --w98-icon-button-size: var(--w98-layout-icon-lg);
+}
+
+.w98-icon-button--flat {
+  box-shadow: none;
+}
+
+.w98-icon-button--flat:hover {
+  box-shadow: var(--w98-bevel-raised);
+}
+
+.w98-icon-button--chrome {
+  --w98-icon-button-size: var(--w98-layout-title-button-size);
+  font-size: 9px;
+}
+
+.w98-icon-button:active,
+.w98-icon-button.is-pressed {
+  box-shadow: var(--w98-bevel-pressed);
+}
+
+.w98-icon-button:active .w98-icon-button__glyph,
+.w98-icon-button.is-pressed .w98-icon-button__glyph {
+  transform: translate(1px, 1px);
+}
+
+/* --- Checkbox / Radio ----------------------------------------------------- */
+.w98-checkbox,
+.w98-radio {
+  --w98-tick-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w98-space-6);
+  font-size: var(--w98-type-size-ui-sm);
+  cursor: default;
+  user-select: none;
+}
+
+.w98-checkbox--sm,
+.w98-radio--sm {
+  --w98-tick-size: 11px;
+  font-size: var(--w98-type-size-ui-xs);
+}
+
+.w98-checkbox--lg,
+.w98-radio--lg {
+  --w98-tick-size: 24px;
+  gap: var(--w98-space-12);
+  font-size: var(--w98-type-size-ui-lg);
+}
+
+.w98-checkbox__input,
+.w98-radio__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.w98-checkbox__box {
+  position: relative;
+  flex: none;
+  width: var(--w98-tick-size);
+  height: var(--w98-tick-size);
+  background: var(--w98-color-field);
+  box-shadow: var(--w98-bevel-field);
+}
+
+/* The check appears in one frame — never faded, never eased. */
+.w98-checkbox__input:checked + .w98-checkbox__box::after {
+  content: '✔';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--w98-tick-size) * 0.8);
+  line-height: 1;
+  color: var(--w98-color-ink);
+}
+
+.w98-checkbox__box.is-indeterminate::after {
+  content: '';
+  position: absolute;
+  inset: 25%;
+  background: var(--w98-color-ink-disabled);
+}
+
+.w98-radio__dot {
+  position: relative;
+  flex: none;
+  width: var(--w98-tick-size);
+  height: var(--w98-tick-size);
+  background: var(--w98-color-field);
+  box-shadow: var(--w98-bevel-field);
+  border-radius: 50%;
+}
+
+.w98-radio__input:checked + .w98-radio__dot::after {
+  content: '';
+  position: absolute;
+  inset: 28%;
+  background: var(--w98-color-ink);
+  border-radius: 50%;
+}
+
+.w98-checkbox.is-disabled,
+.w98-radio.is-disabled {
+  color: var(--w98-color-ink-disabled);
+  text-shadow: 1px 1px 0 var(--w98-color-ink-emboss);
+}
+
+.w98-radio-group {
+  display: flex;
+  gap: var(--w98-space-8);
+  padding: var(--w98-space-12);
+  border: 0;
+  box-shadow: var(--w98-bevel-etched);
+}
+
+.w98-radio-group--column {
+  flex-direction: column;
+}
+
+.w98-radio-group--row {
+  flex-direction: row;
+  align-items: center;
+}
+
+.w98-radio-group__legend {
+  padding: 0 var(--w98-space-4);
+  font-size: var(--w98-type-size-ui-xs);
+}
+
+/* --- TextInput ------------------------------------------------------------ */
+.w98-text-input {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--w98-space-4);
+  font-size: var(--w98-type-size-ui-sm);
+}
+
+.w98-text-input--block {
+  display: flex;
+  width: 100%;
+}
+
+.w98-text-input--lg {
+  font-size: var(--w98-type-size-ui-lg);
+}
+
+.w98-text-input__label {
+  font-size: var(--w98-type-size-ui-xs);
+}
+
+.w98-text-input__well {
+  display: flex;
+  align-items: center;
+  min-height: var(--w98-layout-control-height);
+  padding: var(--w98-space-2) var(--w98-space-4);
+  background: var(--w98-color-field);
+  box-shadow: var(--w98-bevel-field);
+}
+
+.w98-text-input--lg .w98-text-input__well {
+  min-height: var(--w98-layout-control-height-lg);
+  padding: var(--w98-space-6) var(--w98-space-8);
+}
+
+.w98-text-input--terminal .w98-text-input__well {
+  background: var(--w98-color-ascii-surface);
+}
+
+.w98-text-input__input {
+  width: 100%;
+  background: none;
+  border: 0;
+  outline: none;
+}
+
+.w98-text-input__input--terminal {
+  font-family: var(--w98-type-family-mono);
+  color: var(--w98-color-ascii-surface-ink);
+}
+
+.w98-text-input__well.has-caret::after {
+  content: '▮';
+  margin-left: 1px;
+  animation: w98-blink var(--w98-motion-blink-rate) var(--w98-motion-step-1) infinite;
+}
+
+.w98-text-input.is-disabled .w98-text-input__well {
+  background: var(--w98-color-surface);
+  color: var(--w98-color-ink-disabled);
+}
+
+/* --- ProgressBar ---------------------------------------------------------- */
+.w98-progress {
+  --w98-progress-height: 20px;
+  width: 100%;
+}
+
+.w98-progress--sm {
+  --w98-progress-height: 14px;
+}
+
+.w98-progress--lg {
+  --w98-progress-height: 40px;
+}
+
+.w98-progress__track {
+  position: relative;
+  height: var(--w98-progress-height);
+  padding: var(--w98-space-2);
+  overflow: hidden;
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-field);
+}
+
+.w98-progress__segments {
+  display: flex;
+  gap: 2px;
+  height: 100%;
+}
+
+.w98-progress__segment {
+  flex: 1 1 0;
+  background: transparent;
+}
+
+.w98-progress__segment.is-filled {
+  background: var(--w98-color-title-active-start);
+}
+
+.w98-progress__fill {
+  height: 100%;
+  background: var(--w98-color-title-active-start);
+}
+
+.w98-progress--ascii .w98-progress__track {
+  box-shadow: var(--w98-bevel-engraved);
+}
+
+.w98-progress--ascii .w98-progress__segment.is-filled {
+  background: var(--w98-color-ink);
+}
+
+.w98-progress.is-indeterminate .w98-progress__fill {
+  width: 34%;
+  animation: w98-progress-sweep var(--w98-motion-duration-sequence) var(--w98-motion-step-8) infinite;
+}
+
+@keyframes w98-progress-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
+
+/* --- Scrollbar ------------------------------------------------------------ */
+.w98-scrollbar {
+  --w98-scrollbar-size: var(--w98-layout-scrollbar-size);
+  display: flex;
+  background: var(--w98-color-surface-sunken);
+}
+
+.w98-scrollbar--lg {
+  --w98-scrollbar-size: var(--w98-layout-scrollbar-size-lg);
+}
+
+.w98-scrollbar--vertical {
+  flex-direction: column;
+  width: var(--w98-scrollbar-size);
+  height: 100%;
+}
+
+.w98-scrollbar--horizontal {
+  flex-direction: row;
+  width: 100%;
+  height: var(--w98-scrollbar-size);
+}
+
+.w98-scrollbar__arrow {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--w98-scrollbar-size);
+  height: var(--w98-scrollbar-size);
+  font-size: calc(var(--w98-scrollbar-size) * 0.45);
+  line-height: 1;
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-raised);
+}
+
+.w98-scrollbar__track {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.w98-scrollbar__thumb {
+  position: absolute;
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-raised);
+}
+
+.w98-scrollbar--vertical .w98-scrollbar__thumb {
+  left: 0;
+  width: 100%;
+}
+
+.w98-scrollbar--horizontal .w98-scrollbar__thumb {
+  top: 0;
+  height: 100%;
+}

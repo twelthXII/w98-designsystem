@@ -1,0 +1,192 @@
+/*
+ * W98 ASCII Design System — design tokens
+ *
+ * GENERATED FILE. Do not edit by hand.
+ * Source: src/tokens/*.ts — regenerate with `npm run tokens`.
+ */
+
+:root {
+  /* COLOR — System palette. Substrate greys are fixed; status colours are calibration candidates. */
+  --w98-color-desktop: #008080;
+  --w98-color-desktop-alt: #3a6ea5;
+  --w98-color-paper: #ffffff;
+  --w98-color-void: #000000;
+  --w98-color-surface: #c0c0c0;
+  --w98-color-surface-raised: #dfdfdf;
+  --w98-color-surface-sunken: #a8a8a8;
+  --w98-color-field: #ffffff;
+  --w98-color-bevel-light: #ffffff;
+  --w98-color-bevel-face: #dfdfdf;
+  --w98-color-bevel-shadow: #808080;
+  --w98-color-bevel-dark: #0a0a0a;
+  --w98-color-ink: #000000;
+  --w98-color-ink-muted: #404040;
+  --w98-color-ink-disabled: #808080;
+  --w98-color-ink-emboss: #ffffff;
+  --w98-color-ink-inverse: #ffffff;
+  --w98-color-title-active-start: #000080;
+  --w98-color-title-active-end: #1084d0;
+  --w98-color-title-inactive-start: #808080;
+  --w98-color-title-inactive-end: #b5b5b5;
+  --w98-color-title-ink: #ffffff;
+  --w98-color-title-ink-inactive: #dfdfdf;
+  --w98-color-select-bg: #000080;
+  --w98-color-select-ink: #ffffff;
+  --w98-color-link: #0000ff;
+  --w98-color-highlight: #ffff00;
+  --w98-color-status-info: #000080;
+  --w98-color-status-ok: #008000;
+  --w98-color-status-warning: #808000;
+  --w98-color-status-error: #800000;
+  --w98-color-ascii-ink: #000000;
+  --w98-color-ascii-ink-dim: #808080;
+  --w98-color-ascii-ink-faint: #a8a8a8;
+  --w98-color-ascii-surface: #000000;
+  --w98-color-ascii-surface-ink: #c0c0c0;
+  --w98-color-shadow-hard: rgba(0, 0, 0, 0.35);
+  --w98-color-scrim: rgba(0, 0, 0, 0.45);
+
+  /* TYPE — UI type, editorial display type, and the monospaced ASCII family. */
+  --w98-type-family-ui: "Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, "Segoe UI", system-ui, sans-serif;
+  --w98-type-family-display: "Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, "Segoe UI", system-ui, sans-serif;
+  --w98-type-family-mono: "MS Gothic", "IBM Plex Mono", "Courier New", ui-monospace, SFMono-Regular, monospace;
+  --w98-type-size-ui-xs: 11px;
+  --w98-type-size-ui-sm: 12px;
+  --w98-type-size-ui-md: 14px;
+  --w98-type-size-ui-lg: 16px;
+  --w98-type-size-display-xs: 24px;
+  --w98-type-size-display-sm: 32px;
+  --w98-type-size-display-md: 44px;
+  --w98-type-size-display-lg: 60px;
+  --w98-type-size-display-xl: 80px;
+  --w98-type-size-display-2xl: 112px;
+  --w98-type-leading-flat: 1;
+  --w98-type-leading-ui: 1.15;
+  --w98-type-leading-display: 1.05;
+  --w98-type-leading-prose: 1.45;
+  --w98-type-tracking-ui: 0;
+  --w98-type-tracking-display: -0.02em;
+  --w98-type-tracking-caps: 0.08em;
+  --w98-type-weight-regular: 400;
+  --w98-type-weight-bold: 700;
+
+  /* SPACE — Pixel-locked spacing scale. Keys are pixel values. */
+  --w98-space-0: 0;
+  --w98-space-1: 1px;
+  --w98-space-2: 2px;
+  --w98-space-4: 4px;
+  --w98-space-6: 6px;
+  --w98-space-8: 8px;
+  --w98-space-12: 12px;
+  --w98-space-16: 16px;
+  --w98-space-24: 24px;
+  --w98-space-32: 32px;
+  --w98-space-48: 48px;
+  --w98-space-64: 64px;
+  --w98-space-96: 96px;
+  --w98-space-128: 128px;
+
+  /* BORDER — Line weights and focus styling. Radius is always 0. */
+  --w98-border-width-hairline: 1px;
+  --w98-border-width-bevel: 2px;
+  --w98-border-width-frame: 4px;
+  --w98-border-radius: 0;
+  --w98-border-focus-style: 1px dotted var(--w98-color-ink);
+  --w98-border-focus-offset: -4px;
+
+  /* BEVEL — Composite two-step light/dark insets. The core Windows 98 detail. */
+  --w98-bevel-raised: inset -1px -1px var(--w98-color-bevel-dark), inset 1px 1px var(--w98-color-bevel-light), inset -2px -2px var(--w98-color-bevel-shadow), inset 2px 2px var(--w98-color-bevel-face);
+  --w98-bevel-pressed: inset -1px -1px var(--w98-color-bevel-light), inset 1px 1px var(--w98-color-bevel-dark), inset -2px -2px var(--w98-color-bevel-face), inset 2px 2px var(--w98-color-bevel-shadow);
+  --w98-bevel-window: inset -1px -1px var(--w98-color-bevel-dark), inset 1px 1px var(--w98-color-bevel-face), inset -2px -2px var(--w98-color-bevel-shadow), inset 2px 2px var(--w98-color-bevel-light);
+  --w98-bevel-field: inset -1px -1px var(--w98-color-bevel-light), inset 1px 1px var(--w98-color-bevel-shadow), inset -2px -2px var(--w98-color-bevel-face), inset 2px 2px var(--w98-color-bevel-dark);
+  --w98-bevel-etched: inset -1px -1px var(--w98-color-bevel-light), inset 1px 1px var(--w98-color-bevel-shadow);
+  --w98-bevel-engraved: inset -1px -1px var(--w98-color-bevel-face), inset 1px 1px var(--w98-color-bevel-shadow);
+  --w98-bevel-outline: inset 0 0 0 1px var(--w98-color-bevel-dark);
+  --w98-bevel-none: none;
+
+  /* SHADOW — Hard offset shadows only. No blur, no glow. */
+  --w98-shadow-none: none;
+  --w98-shadow-hard-sm: 2px 2px 0 var(--w98-color-shadow-hard);
+  --w98-shadow-hard-md: 4px 4px 0 var(--w98-color-shadow-hard);
+  --w98-shadow-hard-lg: 8px 8px 0 var(--w98-color-shadow-hard);
+  --w98-shadow-drop-window: 6px 6px 0 var(--w98-color-shadow-hard);
+
+  /* MOTION — Durations, easings and stepped timing. Rules live in src/motion. */
+  --w98-motion-duration-instant: 0ms;
+  --w98-motion-duration-tap: 80ms;
+  --w98-motion-duration-fast: 120ms;
+  --w98-motion-duration-base: 180ms;
+  --w98-motion-duration-window: 240ms;
+  --w98-motion-duration-slow: 360ms;
+  --w98-motion-duration-sequence: 640ms;
+  --w98-motion-duration-ambient: 1200ms;
+  --w98-motion-duration-ambient-slow: 2400ms;
+  --w98-motion-duration-ambient-drift: 4800ms;
+  --w98-motion-ease-linear: linear;
+  --w98-motion-ease-ui: cubic-bezier(0.2, 0, 0, 1);
+  --w98-motion-ease-cursor: cubic-bezier(0.33, 0, 0.15, 1);
+  --w98-motion-ease-open: cubic-bezier(0.16, 0.84, 0.44, 1);
+  --w98-motion-ease-close: cubic-bezier(0.6, 0, 0.9, 0.3);
+  --w98-motion-step-1: steps(1, end);
+  --w98-motion-step-2: steps(2, end);
+  --w98-motion-step-4: steps(4, end);
+  --w98-motion-step-8: steps(8, end);
+  --w98-motion-step-12: steps(12, end);
+  --w98-motion-step-24: steps(24, end);
+  --w98-motion-stagger: 60ms;
+  --w98-motion-stagger-slow: 120ms;
+  --w98-motion-dwell: 400ms;
+  --w98-motion-blink-rate: 1060ms;
+
+  /* ASCII — Text-mode grid metrics and per-role optical weight. */
+  --w98-ascii-size-xs: 9px;
+  --w98-ascii-size-sm: 11px;
+  --w98-ascii-size-md: 13px;
+  --w98-ascii-size-lg: 17px;
+  --w98-ascii-size-xl: 24px;
+  --w98-ascii-leading: 1;
+  --w98-ascii-tracking: 0;
+  --w98-ascii-cell: 1ch;
+  --w98-ascii-opacity-ambient: 0.35;
+  --w98-ascii-opacity-decorative: 0.6;
+  --w98-ascii-opacity-primary: 1;
+
+  /* LAYOUT — Fixed chrome metrics, with oversized variants for editorial scale. */
+  --w98-layout-title-bar-height: 18px;
+  --w98-layout-title-bar-height-lg: 28px;
+  --w98-layout-title-button-size: 14px;
+  --w98-layout-title-button-size-lg: 22px;
+  --w98-layout-menu-bar-height: 20px;
+  --w98-layout-status-bar-height: 20px;
+  --w98-layout-toolbar-height: 26px;
+  --w98-layout-scrollbar-size: 16px;
+  --w98-layout-scrollbar-size-lg: 24px;
+  --w98-layout-control-height-sm: 18px;
+  --w98-layout-control-height: 23px;
+  --w98-layout-control-height-lg: 32px;
+  --w98-layout-control-min-width: 75px;
+  --w98-layout-icon-sm: 16px;
+  --w98-layout-icon-md: 32px;
+  --w98-layout-icon-lg: 48px;
+  --w98-layout-cursor-sm: 20px;
+  --w98-layout-cursor-md: 32px;
+  --w98-layout-cursor-lg: 64px;
+  --w98-layout-cursor-xl: 120px;
+  --w98-layout-window-min-width: 160px;
+  --w98-layout-dialog-width: 360px;
+  --w98-layout-canvas-gutter: 32px;
+  --w98-layout-canvas-gutter-lg: 64px;
+
+  /* Z — Stacking ladder for desktop compositions. */
+  --w98-z-ground: 0;
+  --w98-z-desktop-icon: 5;
+  --w98-z-window: 10;
+  --w98-z-window-active: 20;
+  --w98-z-toolbar: 30;
+  --w98-z-menu: 40;
+  --w98-z-dropdown: 50;
+  --w98-z-tooltip: 60;
+  --w98-z-dialog: 70;
+  --w98-z-scrim: 65;
+  --w98-z-cursor: 90;
+}

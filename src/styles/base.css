@@ -1,0 +1,121 @@
+/*
+ * W98 ASCII Design System — base layer
+ *
+ * Establishes the pixel-locked rendering environment every component assumes:
+ * no font smoothing, no anti-aliased scaling, no rounded corners, no inherited
+ * browser chrome.
+ *
+ * Apply `.w98-root` to the outermost element of a composition (DesktopCanvas
+ * does this for you).
+ */
+
+.w98-root {
+  font-family: var(--w98-type-family-ui);
+  font-size: var(--w98-type-size-ui-md);
+  line-height: var(--w98-type-leading-ui);
+  letter-spacing: var(--w98-type-tracking-ui);
+  color: var(--w98-color-ink);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  font-smooth: never;
+  text-rendering: geometricPrecision;
+}
+
+.w98-root *,
+.w98-root *::before,
+.w98-root *::after {
+  box-sizing: border-box;
+  border-radius: var(--w98-border-radius);
+}
+
+.w98-root img,
+.w98-root canvas,
+.w98-root svg {
+  image-rendering: pixelated;
+}
+
+.w98-root p,
+.w98-root h1,
+.w98-root h2,
+.w98-root h3,
+.w98-root figure,
+.w98-root fieldset,
+.w98-root legend {
+  margin: 0;
+  padding: 0;
+}
+
+.w98-root button,
+.w98-root input,
+.w98-root select,
+.w98-root textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Focus is a dotted rectangle inset into the control, exactly as in 98. */
+.w98-root :focus-visible {
+  outline: var(--w98-border-focus-style);
+  outline-offset: var(--w98-border-focus-offset);
+}
+
+.w98-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- surface utilities ---------------------------------------------------
+ * The four bevel treatments, available as classes for one-off compositions
+ * that need a surface without a component.
+ */
+.w98-surface {
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-raised);
+}
+
+.w98-surface--window {
+  box-shadow: var(--w98-bevel-window);
+}
+
+.w98-surface--field {
+  background: var(--w98-color-field);
+  box-shadow: var(--w98-bevel-field);
+}
+
+.w98-surface--well {
+  background: var(--w98-color-surface);
+  box-shadow: var(--w98-bevel-engraved);
+}
+
+.w98-surface--terminal {
+  background: var(--w98-color-ascii-surface);
+  color: var(--w98-color-ascii-surface-ink);
+  box-shadow: var(--w98-bevel-field);
+}
+
+/* --- type utilities ------------------------------------------------------ */
+.w98-display {
+  font-family: var(--w98-type-family-display);
+  font-weight: var(--w98-type-weight-bold);
+  line-height: var(--w98-type-leading-display);
+  letter-spacing: var(--w98-type-tracking-display);
+}
+
+.w98-ui-label {
+  font-size: var(--w98-type-size-ui-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--w98-type-tracking-caps);
+}
+
+.w98-mono {
+  font-family: var(--w98-type-family-mono);
+  line-height: var(--w98-ascii-leading);
+  letter-spacing: var(--w98-ascii-tracking);
+}

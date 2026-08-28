@@ -1,0 +1,59 @@
+{
+  "name": "w98-ascii-design-system",
+  "version": "0.1.0",
+  "description": "W98 ASCII Design System — a Windows 98 / late-90s desktop UI visual grammar with an ASCII text-mode secondary layer, built as a code-backed React design system.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "private": true,
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles/index.css",
+    "./tokens.css": "./dist/styles/tokens.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "tokens": "tsx scripts/generate-tokens.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run tokens && tsc -p tsconfig.build.json && node scripts/copy-css.mjs",
+    "dev": "vite",
+    "build:playground": "vite build",
+    "check": "npm run tokens && npm run typecheck && npm run smoke",
+    "smoke": "tsx scripts/smoke.tsx"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11"
+  },
+  "keywords": [
+    "design-system",
+    "windows98",
+    "ascii",
+    "react",
+    "design-sync"
+  ]
+}
