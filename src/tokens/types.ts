@@ -20,6 +20,7 @@ export type TokenGroupName =
   | 'border'
   | 'bevel'
   | 'shadow'
+  | 'pattern'
   | 'motion'
   | 'ascii'
   | 'layout'

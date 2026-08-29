@@ -5,14 +5,19 @@ import { cx } from '../utils/cx';
 export interface WindowStackProps {
   /** `Window` / `Dialog` elements, back to front. */
   children: ReactNode;
-  /** Per-step offset in px. */
+  /** Per-step offset in px. Both are ignored by the `stack` arrangement. */
   offsetX?: number;
   offsetY?: number;
   /**
    * Arrangement
-   *  - `cascade` — each window offset down-right. The classic desktop pile.
-   *  - `stack`   — perfectly aligned, offset in z only. Reads as escalation.
-   *  - `fan`     — alternating horizontal offset. Looser, more editorial.
+   *  - `cascade` — each window offset down-right by the full offset. The classic
+   *    desktop pile, and the arrangement that reads as escalation when the same
+   *    window repeats.
+   *  - `stack` — perfectly aligned; the windows differ in z only, so `offsetX`
+   *    and `offsetY` are ignored. Only useful when the children differ in size
+   *    (a dialog over a window); identical children render as one object.
+   *  - `fan` — alternating left/right offset with the same downward progression
+   *    as cascade. Looser and more editorial.
    */
   arrangement?: 'cascade' | 'stack' | 'fan';
   /**
@@ -30,9 +35,9 @@ type MaybeActive = { active?: boolean };
 /**
  * WindowStack — several windows read as one object.
  *
- * Use it for depth (a focused window over dimmed ones) or for escalation
- * (the same dialog three times, slightly offset). Do not use it to fill space:
- * more than four windows in a stack stops being a composition and becomes noise.
+ * Use it for depth (a focused window over dimmed ones) or for escalation — the
+ * same dialog three times, offset, which is `cascade`. Do not use it to fill
+ * space: more than four windows stops being a composition and becomes noise.
  */
 export function WindowStack({
   children,
@@ -50,8 +55,19 @@ export function WindowStack({
     <div className={cx('w98-window-stack', `w98-window-stack--${arrangement}`, className)} style={style}>
       {items.map((child, index) => {
         const step = index;
-        const dx = arrangement === 'stack' ? 0 : arrangement === 'fan' ? (index % 2 === 0 ? 1 : -1) * offsetX : offsetX * step;
-        const dy = arrangement === 'stack' ? offsetY * step * 0.25 : offsetY * step;
+        /*
+         * `stack` is aligned exactly, per its contract — it previously carried a
+         * quarter-step vertical offset, which was neither "aligned" nor large
+         * enough to read as the escalation the doc promised. Escalation is what
+         * `cascade` does.
+         */
+        const dx =
+          arrangement === 'stack'
+            ? 0
+            : arrangement === 'fan'
+              ? (index % 2 === 0 ? 1 : -1) * offsetX
+              : offsetX * step;
+        const dy = arrangement === 'stack' ? 0 : offsetY * step;
 
         return (
           <div

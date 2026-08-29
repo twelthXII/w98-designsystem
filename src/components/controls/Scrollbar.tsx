@@ -51,7 +51,7 @@ export function Scrollbar({
           {vertical ? '▲' : '◄'}
         </span>
       ) : null}
-      <span className="w98-scrollbar__track">
+      <span className="w98-scrollbar__track w98-pattern-checker">
         <span
           className="w98-scrollbar__thumb"
           style={

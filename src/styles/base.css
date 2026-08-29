@@ -172,6 +172,32 @@
   box-shadow: var(--w98-bevel-field);
 }
 
+/* --- pattern utilities ---------------------------------------------------
+ * The Windows 98 checkerboard, composed once from tokens. Two identical
+ * gradients offset by half a cell produce the 2x2 checker; changing
+ * `--w98-pattern-checker-cell` rescales it without touching this rule.
+ */
+.w98-pattern-checker {
+  background-color: var(--w98-pattern-checker-ground);
+  background-image:
+    linear-gradient(
+      45deg,
+      var(--w98-pattern-checker-ink) 25%,
+      transparent 25% 75%,
+      var(--w98-pattern-checker-ink) 75%
+    ),
+    linear-gradient(
+      45deg,
+      var(--w98-pattern-checker-ink) 25%,
+      transparent 25% 75%,
+      var(--w98-pattern-checker-ink) 75%
+    );
+  background-size: var(--w98-pattern-checker-cell) var(--w98-pattern-checker-cell);
+  background-position:
+    0 0,
+    calc(var(--w98-pattern-checker-cell) / 2) calc(var(--w98-pattern-checker-cell) / 2);
+}
+
 /* --- type utilities ------------------------------------------------------ */
 .w98-display {
   font-family: var(--w98-type-family-display);

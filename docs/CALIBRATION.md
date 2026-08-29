@@ -25,6 +25,8 @@ system *is*.
 | Status ramp | `color['status-*']` | Whether to stay VGA-derived or move to a specific accent family. |
 | Editorial neutrals | `color['paper' \| 'void' \| 'desktop*']` | Which grounds the system actually uses, and in what proportion. |
 | Display scale | `typography['size-display-*']` | Top three steps will move once real headlines are set. |
+| UI family | `typography['family-ui']` | **Open.** The fallback chain is deterministic and ordered deliberately, but the faces themselves are a placeholder, not a choice. |
+| Mono family | `typography['family-mono']` | **Open.** Ordered by measured glyph coverage so the ASCII grid holds; which mono face the system wants is undecided. Audit any candidate with `.design-sync/tools/mono-audit.mjs` before adding it — a face that splits the ASCII inventory breaks the 1ch grid. |
 | Display family | `typography['family-display']` | Currently the UI stack. A distinct editorial face is an open decision. |
 | ASCII weights | `ascii['opacity-*']` | How quiet ambient really needs to be against each ground. |
 | ASCII sizes | `ascii['size-*']` | Depends on delivery resolution. |

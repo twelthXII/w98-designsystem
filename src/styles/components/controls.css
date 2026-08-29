@@ -289,10 +289,22 @@
   color: var(--w98-color-ascii-surface-ink);
 }
 
-.w98-text-input__well.has-caret::after {
-  content: '▮';
+/*
+ * With a caret, the input stops filling the well and takes the width of its
+ * content, so the caret renders directly after the last character. The `size`
+ * attribute set by the component covers every browser; `field-sizing` keeps the
+ * width correct while the value changes where it is supported.
+ */
+.w98-text-input__well.has-caret .w98-text-input__input {
+  width: auto;
+  min-width: 1ch;
+  field-sizing: content;
+}
+
+.w98-text-input__caret {
+  flex: none;
   margin-left: 1px;
-  animation: w98-blink var(--w98-motion-blink-rate) var(--w98-motion-step-1) infinite;
+  user-select: none;
 }
 
 .w98-text-input.is-disabled .w98-text-input__well {
@@ -370,6 +382,12 @@
   --w98-scrollbar-size: var(--w98-layout-scrollbar-size);
   display: flex;
   background: var(--w98-color-surface-sunken);
+}
+
+/* The track carries the checker; the pattern itself lives in base.css so the
+   desktop ground and any other dithered surface can reuse it unchanged. */
+.w98-scrollbar__track {
+  background-color: var(--w98-pattern-checker-ground);
 }
 
 .w98-scrollbar--lg {

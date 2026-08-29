@@ -45,8 +45,23 @@
   opacity: var(--w98-ascii-opacity-primary);
 }
 
+/*
+ * Ink is declared per surface, never left to a single global default.
+ *
+ * `none` has no ground of its own, so it takes the colour of whatever contains
+ * it — a light panel gives dark ASCII, a dark pane gives light ASCII. Without
+ * this rule a transparent canvas kept the dark ink and went invisible inside a
+ * terminal pane or a `void` canvas. The other two surfaces bring their own
+ * ground, so they pin their own ink. The `ink` prop is an inline style and
+ * overrides all three.
+ */
+.w98-ascii-canvas--none {
+  color: inherit;
+}
+
 .w98-ascii-canvas--field {
   padding: var(--w98-space-8);
+  color: var(--w98-color-ascii-ink);
   background: var(--w98-color-field);
   box-shadow: var(--w98-bevel-field);
 }

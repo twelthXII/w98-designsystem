@@ -62,7 +62,7 @@ This page is the map.
 | Component | Variants | Notes |
 |-----------|----------|-------|
 | `DesktopCanvas` | `ratio`: `1:1` · `4:5` · `9:16` · `16:9` · `3:2` · `auto`; `ground`: `desktop` · `desktop-alt` · `system` · `paper` · `void`; `gutter`; `layout`: `free` · `flow` · `center` | The root frame and coordinate space. Applies `.w98-root`. |
-| `WindowStack` | `arrangement`: `cascade` · `stack` · `fan`; `offsetX`/`offsetY`; `activeIndex` | Depth or escalation. Four windows is the ceiling. |
+| `WindowStack` | `arrangement`: `cascade` · `stack` · `fan`; `offsetX`/`offsetY`; `activeIndex` | Depth or escalation — `cascade` is the escalation arrangement. `stack` aligns exactly and ignores the offsets. Four windows is the ceiling. |
 | `EditorialWindow` | `layout`: `stacked` · `split` · `bare`; `headlineSize`: `md` · `lg` · `xl` · `2xl` | 98 chrome around editorial typography. Slots: `eyebrow`, `standfirst`, `aside`, `footer`. |
 | `SplitWindow` | `orientation`; `ratio`; `splitter`; pane surfaces `panel` · `field` · `terminal` | The comparison device: before/after, list/detail, message/figure. |
 | `SystemPanel` | `variant`: `group` · `raised` · `toolbar` · `well`; `layout`: `stack` · `row` · `grid`; `gap`; `align` | Isolation primitive — a lone group box is a complete composition. |

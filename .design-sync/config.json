@@ -17,5 +17,58 @@
     "StatusBarField": ".design-sync/groups/StatusBarField.md",
     "W98Root": ".design-sync/groups/W98Root.md"
   },
-  "readmeHeader": ".design-sync/conventions.md"
+  "readmeHeader": ".design-sync/conventions.md",
+  "overrides": {
+    "AsciiCanvas": {
+      "cardMode": "column"
+    },
+    "Cursor": {
+      "cardMode": "column"
+    },
+    "DesktopCanvas": {
+      "cardMode": "column"
+    },
+    "EditorialWindow": {
+      "cardMode": "column"
+    },
+    "ErrorDialog": {
+      "cardMode": "column"
+    },
+    "Menu": {
+      "cardMode": "column"
+    },
+    "MenuBar": {
+      "cardMode": "column"
+    },
+    "SplitWindow": {
+      "cardMode": "column"
+    },
+    "StatusBar": {
+      "cardMode": "column"
+    },
+    "StatusBarField": {
+      "cardMode": "column"
+    },
+    "SystemMessage": {
+      "cardMode": "column"
+    },
+    "SystemPanel": {
+      "cardMode": "column"
+    },
+    "Tabs": {
+      "cardMode": "column"
+    },
+    "TitleBar": {
+      "cardMode": "column"
+    },
+    "Tooltip": {
+      "cardMode": "column"
+    },
+    "Window": {
+      "cardMode": "column"
+    },
+    "WindowStack": {
+      "cardMode": "column"
+    }
+  }
 }

@@ -3,13 +3,14 @@ import { typography } from './typography';
 import { space } from './space';
 import { border, bevel } from './border';
 import { shadow } from './shadow';
+import { pattern } from './pattern';
 import { motion } from './motion';
 import { ascii } from './ascii';
 import { layout } from './layout';
 import { z } from './z';
 import type { TokenGroupDefinition } from './types';
 
-export { color, typography, space, border, bevel, shadow, motion, ascii, layout, z };
+export { color, typography, space, border, bevel, shadow, pattern, motion, ascii, layout, z };
 export type { TokenValue, TokenGroup, TokenGroupName, TokenGroupDefinition } from './types';
 
 /**
@@ -23,13 +24,14 @@ export const tokenGroups: TokenGroupDefinition[] = [
   { name: 'border', doc: 'Line weights and focus styling. Radius is always 0.', tokens: border },
   { name: 'bevel', doc: 'Composite two-step light/dark insets. The core Windows 98 detail.', tokens: bevel },
   { name: 'shadow', doc: 'Hard offset shadows only. No blur, no glow.', tokens: shadow },
+  { name: 'pattern', doc: 'Repeating pixel patterns, composed by the .w98-pattern-* utilities.', tokens: pattern },
   { name: 'motion', doc: 'Durations, easings and stepped timing. Rules live in src/motion.', tokens: motion },
   { name: 'ascii', doc: 'Text-mode grid metrics and per-role optical weight.', tokens: ascii },
   { name: 'layout', doc: 'Fixed chrome metrics, with oversized variants for editorial scale.', tokens: layout },
   { name: 'z', doc: 'Stacking ladder for desktop compositions.', tokens: z },
 ];
 
-export const tokens = { color, typography, space, border, bevel, shadow, motion, ascii, layout, z } as const;
+export const tokens = { color, typography, space, border, bevel, shadow, pattern, motion, ascii, layout, z } as const;
 
 /** CSS custom property name for a token, e.g. `cssVarName('color', 'surface')`. */
 export function cssVarName(group: string, key: string): string {

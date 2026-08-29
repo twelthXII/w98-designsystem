@@ -25,6 +25,11 @@ export interface AsciiPanelProps {
    */
   surface?: 'field' | 'terminal' | 'bare';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  /**
+   * Pins the ink colour, forwarded to the underlying canvas. Needed when a
+   * `bare` panel sits on a ground whose colour the surface rule cannot infer.
+   */
+  ink?: string;
   cols?: number;
   rows?: number;
   align?: 'start' | 'center' | 'end';
@@ -49,6 +54,7 @@ export function AsciiPanel({
   footer,
   surface = 'field',
   size = 'md',
+  ink,
   cols,
   rows,
   align = 'center',
@@ -61,6 +67,7 @@ export function AsciiPanel({
         <AsciiCanvas
           role={role}
           size={size}
+          ink={ink}
           surface={surface === 'bare' ? 'none' : surface}
           cols={cols}
           rows={rows}

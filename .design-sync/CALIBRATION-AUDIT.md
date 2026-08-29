@@ -53,7 +53,21 @@ token/style delta — not a component rewrite.
 | Focus | 1px dotted, `-4px` offset | offset and colour |
 | Disabled | `ink-disabled` + white emboss shadow | emboss offset and which elements get it |
 
-## Typography (open, from this run)
+## Typography (open — explicitly deferred to this pass)
+
+**No font has been chosen.** The corrective pass deliberately changed nothing
+here. `family-ui` and `family-mono` carry deterministic, coverage-ordered
+fallback chains and are marked as open decisions in `src/tokens/typography.ts`.
+Decide them as part of the substrate, not ahead of it. Two constraints the pass
+must respect, both established by measurement rather than preference:
+
+- Never end a stack in `system-ui` / `ui-monospace` — those resolve to whatever
+  the host defaults to and make rendering non-deterministic per machine.
+- Any mono candidate must carry the whole ASCII inventory. Run
+  `.design-sync/tools/mono-audit.mjs`: a face that covers only part of it hands
+  the rest to a fallback at a different advance width, which breaks the 1ch grid.
+
+
 
 `[FONT_MISSING]` is currently accepted with OS-shipped fallbacks (Tahoma →
 Verdana → DejaVu Sans). **98.css ships a redistributable `ms_sans_serif` webfont**
@@ -97,13 +111,16 @@ Keep everything declarative — no runtime in this repository.
   from the text end. Deferred — it is a styling decision, and 98.css's text-input
   treatment should inform it in the same pass.
 
-- **`WindowStack` `stack` arrangement contradicts its own documentation.** The
+- **RESOLVED (corrective pass).** `WindowStack` `stack` arrangement contradicted
+  its own documentation. The
   JSDoc says `stack` is "perfectly aligned, offset in z only. Reads as
   escalation." In practice `dy = offsetY * step * 0.25` yields ~4.5px of
   separation at the default offset, so three stacked dialogs render as one and
   the escalation reads as a single dialog. Either raise the multiplier or rewrite
   the doc to say `cascade` is the escalation arrangement. Found while authoring
   the ErrorDialog preview; the card now uses `cascade`, which does read correctly.
+  Fixed: `stack` now aligns exactly (offsets ignored, per its contract) and the
+  escalation note moved to `cascade`, where the behaviour actually lives.
 
 - **`AsciiCanvas` forces its ink colour, so ASCII goes invisible on dark grounds.**
   `.w98-ascii-canvas` sets `color: var(--w98-color-ascii-ink)` (black) even at

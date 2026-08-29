@@ -133,3 +133,50 @@ Repo-specific gotchas for future syncs. Read before re-running.
   `CALIBRATION-AUDIT.md`, plus two logged component quirks (TextInput caret
   placement, `AsciiCanvas` forcing ink on dark grounds) and the `WindowStack`
   `stack` doc/behaviour mismatch.
+
+## Corrective pass (post-first-sync) — NOT yet re-synced
+
+Five confirmed component-level issues, plus one diagnostic the first sync missed.
+No visual-language changes; the 98.css / Figma substrate audit is still pending.
+
+- **TextInput caret.** The synthetic caret rendered at the far right of the well
+  because the input was `width: 100%`. The input is now content-sized when
+  `caret` is set — the component writes a `size` attribute from the value length
+  (works everywhere) and CSS adds `field-sizing: content` (keeps it right while
+  typing where supported). Still a real `<input>`; nothing about its semantics
+  changed. Measured after: caret sits 1px past the input's content edge.
+- **Scrollbar track.** Added a `pattern` token group
+  (`checker-ground` / `checker-ink` / `checker-cell`) and the `.w98-pattern-checker`
+  utility in `base.css`; the track applies the utility. The pattern is composed
+  once, so the desktop ground or any other dithered surface can reuse it. Colours
+  and cell size are calibration inputs, not a chosen look.
+- **AsciiCanvas contrast.** Ink is now declared per surface: `field` and
+  `terminal` pin their own, and `none` inherits its container's colour, so a bare
+  canvas is legible on light and dark grounds alike. The `ink` prop still
+  overrides all three, and `AsciiPanel` now forwards `ink` (it previously had no
+  escape hatch). No measuring, no contrast inference — one explicit rule per
+  surface.
+- **WindowStack.** `stack` now aligns exactly and ignores the offsets, matching
+  its documented "offset in z only"; it previously carried a quarter-step
+  vertical offset that was neither aligned nor readable as escalation. The
+  escalation note moved to `cascade`, which is where the behaviour actually is.
+  Public behaviour changed only because the old behaviour contradicted the
+  contract. `docs/COMPONENTS.md` updated to match.
+- **Typography.** Deliberately unchanged — 9 comment lines only, no value edits.
+  `family-ui` and `family-mono` are now marked as OPEN calibration decisions in
+  `src/tokens/typography.ts` and listed in `docs/CALIBRATION.md`.
+
+### Process lesson — read the WHOLE validate warn list
+
+`[GRID_OVERFLOW]` fired on **17 of 34 components during the first sync and was
+missed**, because the validate log was grepped for `render check:` and
+`FONT_MISSING` instead of being read in full. The cards were cropped in the
+product's card view for every one of them. Fixed here with
+`cfg.overrides.<Name>.cardMode = "column"` on all 17 and one targeted
+preview-rebuild; validate now reports zero grid-overflow warns.
+**On every future run, read every `! [TAG]` line validate prints.**
+
+### Known render warns (expected — anything else is new)
+
+- `[FONT_MISSING]` for `Pixelated MS Sans Serif`, `MS Sans Serif`,
+  `Bitstream Vera Sans` — accepted; no font is bundled pending calibration.

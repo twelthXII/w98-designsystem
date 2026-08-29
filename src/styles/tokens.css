@@ -111,6 +111,11 @@
   --w98-shadow-hard-lg: 8px 8px 0 var(--w98-color-shadow-hard);
   --w98-shadow-drop-window: 6px 6px 0 var(--w98-color-shadow-hard);
 
+  /* PATTERN — Repeating pixel patterns, composed by the .w98-pattern-* utilities. */
+  --w98-pattern-checker-ground: var(--w98-color-surface);
+  --w98-pattern-checker-ink: var(--w98-color-bevel-light);
+  --w98-pattern-checker-cell: 2px;
+
   /* MOTION — Durations, easings and stepped timing. Rules live in src/motion. */
   --w98-motion-duration-instant: 0ms;
   --w98-motion-duration-tap: 80ms;

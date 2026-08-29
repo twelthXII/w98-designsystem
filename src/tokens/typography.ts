@@ -15,6 +15,15 @@ import type { TokenGroup } from './types';
  * CALIBRATION NOTE: the display ramp is a starting scale. Expect the top three
  * steps to be re-tuned after visual references.
  *
+ * OPEN CALIBRATION DECISION — `family-ui` and `family-mono` are NOT final.
+ * What is settled is the *architecture*: deterministic chains that always land on
+ * a face an OS actually ships, ordered by real coverage rather than preference.
+ * What is not settled is which faces those should be, or whether the system
+ * bundles a webfont at all. Both stacks are inputs to the Windows 98 fidelity
+ * pass (see .design-sync/CALIBRATION-AUDIT.md), which should decide them
+ * together with the rest of the substrate. Do not treat the current values as a
+ * chosen visual direction — they are a legible, deterministic placeholder.
+ *
  * FALLBACK POLICY: every stack ends in a face that actually ships with an OS,
  * never in `system-ui` / `ui-monospace`. Those keywords resolve to whatever the
  * host platform defaults to (SF Pro, Roboto, Segoe UI), which silently replaces

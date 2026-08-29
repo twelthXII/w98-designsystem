@@ -15,9 +15,10 @@ export interface AsciiCanvasProps {
   /** @see AsciiRole — drives optical weight, and therefore hierarchy. */
   role?: AsciiRole;
   /**
-   * Surface
-   *  - `none` — transparent; the canvas sits on whatever is behind it.
-   *  - `field` — sunken white well, like a text box.
+   * Surface. Each one declares its own ink, so contrast is never left to chance:
+   *  - `none` — transparent; inherits the container's colour, so it stays legible
+   *    on a light panel and on a dark one alike.
+   *  - `field` — sunken white well with dark ink, like a text box.
    *  - `terminal` — dark ground with light ink. The text-mode surface.
    */
   surface?: 'none' | 'field' | 'terminal';
@@ -28,7 +29,10 @@ export interface AsciiCanvasProps {
   /** Row count. Fixes the height so a looping figure cannot reflow the layout. */
   rows?: number;
   align?: 'start' | 'center' | 'end';
-  /** Ink colour override — takes a colour token value. */
+  /**
+   * Pins the ink colour, overriding whatever the surface would resolve to.
+   * Use it when a canvas sits on a ground the surface rule cannot know about.
+   */
   ink?: string;
   className?: string;
   style?: CSSProperties;
