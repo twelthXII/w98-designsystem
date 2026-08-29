@@ -14,15 +14,42 @@ import type { TokenGroup } from './types';
  *
  * CALIBRATION NOTE: the display ramp is a starting scale. Expect the top three
  * steps to be re-tuned after visual references.
+ *
+ * FALLBACK POLICY: every stack ends in a face that actually ships with an OS,
+ * never in `system-ui` / `ui-monospace`. Those keywords resolve to whatever the
+ * host platform defaults to (SF Pro, Roboto, Segoe UI), which silently replaces
+ * the system face with a modern grotesque and makes rendering non-deterministic
+ * across machines. The chains below always land somewhere period-appropriate:
+ *
+ *   UI    Windows → MS Sans Serif / Tahoma · macOS → Tahoma, else Verdana
+ *         Linux → DejaVu Sans (Verdana metric-compatible)
+ *   Mono  Windows → Consolas · macOS → Menlo · Linux → DejaVu Sans Mono
+ *
+ * The mono stack is ordered by GLYPH COVERAGE, not by preference, because the
+ * ASCII layer renders on a 1ch grid and per-glyph fallback silently changes the
+ * advance width. Measured on macOS: Menlo carries all 58 glyphs of the ASCII
+ * inventory (shading ramps, three box-drawing weights, marks); Monaco carries
+ * 19 and hands the rest to a fallback ~0.31px/char narrower, which visibly
+ * misaligns any figure that mixes ramps with frames.
+ *
+ * `MS Gothic` and other CJK faces are deliberately excluded despite being
+ * period-correct: they render box-drawing and block elements as East Asian
+ * Wide (double-width) against half-width Latin, which breaks the grid outright.
+ * Audit any new candidate with .design-sync/tools/mono-audit.mjs before adding it.
+ *
+ * Tahoma and Verdana share a designer and a skeleton, so the macOS fallback is
+ * the same lineage rather than a different voice. No font is bundled: the real
+ * MS faces are not redistributable, and picking a substitute display face is a
+ * calibration decision (docs/CALIBRATION.md), not a fallback decision.
  */
 export const typography: TokenGroup = {
   /* --- families --------------------------------------------------------- */
   'family-ui':
-    '"Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, "Segoe UI", system-ui, sans-serif',
+    '"Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif',
   'family-display':
-    '"Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, "Segoe UI", system-ui, sans-serif',
+    '"Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif',
   'family-mono':
-    '"MS Gothic", "IBM Plex Mono", "Courier New", ui-monospace, SFMono-Regular, monospace',
+    'Consolas, Menlo, "DejaVu Sans Mono", "Liberation Mono", "Courier New", monospace',
 
   /* --- ui scale --------------------------------------------------------- */
   'size-ui-xs': '11px',

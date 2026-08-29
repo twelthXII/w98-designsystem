@@ -21,42 +21,114 @@
   text-rendering: geometricPrecision;
 }
 
-.w98-root *,
-.w98-root *::before,
-.w98-root *::after {
+/*
+ * Environment resets are wrapped in `:where()` so they contribute ZERO
+ * specificity. Written plainly as `.w98-root button { font: inherit }`, a reset
+ * scores (0,1,1) and outranks every component rule at (0,1,0) — a button inside
+ * a root would silently take the root's 14px instead of its own 12px. Resets
+ * describe the environment; components describe themselves, and components win.
+ */
+:where(.w98-root) *,
+:where(.w98-root) *::before,
+:where(.w98-root) *::after {
   box-sizing: border-box;
   border-radius: var(--w98-border-radius);
 }
 
-.w98-root img,
-.w98-root canvas,
-.w98-root svg {
+:where(.w98-root) :is(img, canvas, svg) {
   image-rendering: pixelated;
 }
 
-.w98-root p,
-.w98-root h1,
-.w98-root h2,
-.w98-root h3,
-.w98-root figure,
-.w98-root fieldset,
-.w98-root legend {
+:where(.w98-root) :is(p, h1, h2, h3, figure, fieldset, legend) {
   margin: 0;
   padding: 0;
 }
 
-.w98-root button,
-.w98-root input,
-.w98-root select,
-.w98-root textarea {
+:where(.w98-root) :is(button, input, select, textarea) {
   font: inherit;
   color: inherit;
 }
 
+/* --- typography guard ----------------------------------------------------
+ * Components must render in the system face even when they are NOT wrapped in
+ * a `.w98-root` — a design agent composing a lone control has no reason to add
+ * a wrapper, and without a declared family the browser hands the element its UA
+ * default (Arial on a bare <button>, Times on a <div>). Inheritance cannot fix
+ * this: a UA rule on <button> beats an inherited value.
+ *
+ * So every component root declares the family itself. The token is defined on
+ * `:root`, so this resolves with or without the wrapper.
+ *
+ * ASCII components are deliberately absent — they declare the mono family in
+ * components/ascii.css, which is imported after this file and wins on order.
+ */
+.w98-window,
+.w98-title-bar,
+.w98-dialog,
+.w98-system-message,
+.w98-button,
+.w98-icon-button,
+.w98-checkbox,
+.w98-radio,
+.w98-radio-group,
+.w98-text-input,
+.w98-progress,
+.w98-scrollbar,
+.w98-menu-bar,
+.w98-menu,
+.w98-dropdown,
+.w98-tabs,
+.w98-status-bar,
+.w98-tooltip__bubble,
+.w98-pixel-icon,
+.w98-desktop-icon,
+.w98-desktop-canvas,
+.w98-window-stack,
+.w98-editorial-window,
+.w98-split-window,
+.w98-system-panel,
+.w98-ascii-panel {
+  font-family: var(--w98-type-family-ui);
+}
+
+/*
+ * Interactive elements carry a UA `font` shorthand that inheritance cannot
+ * override, so they restate the family and re-open the metrics for their own
+ * component rule (which is defined later and therefore wins).
+ */
+.w98-button,
+.w98-icon-button,
+.w98-title-bar__control,
+.w98-menu__item,
+.w98-menu-bar__item,
+.w98-tabs__tab,
+.w98-dropdown__control,
+.w98-text-input__input,
+.w98-desktop-icon,
+.w98-scrollbar__arrow {
+  font-family: var(--w98-type-family-ui);
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
 /* Focus is a dotted rectangle inset into the control, exactly as in 98. */
-.w98-root :focus-visible {
+:where(.w98-root) :focus-visible {
   outline: var(--w98-border-focus-style);
   outline-offset: var(--w98-border-focus-offset);
+}
+
+.w98-root--system {
+  background: var(--w98-color-surface);
+}
+
+.w98-root--paper {
+  background: var(--w98-color-paper);
+}
+
+.w98-root--void {
+  background: var(--w98-color-void);
+  color: var(--w98-color-ascii-surface-ink);
 }
 
 .w98-visually-hidden {

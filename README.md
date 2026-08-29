@@ -209,7 +209,21 @@ export function Frame() {
 ```
 
 `DesktopCanvas` applies `.w98-root`, which establishes the pixel-locked
-rendering environment. Any other root needs that class applied manually.
+rendering environment (system font stack, no font smoothing, `box-sizing`, zero
+radius). To use components outside a canvas — a few controls dropped into an
+existing layout — wrap them in `W98Root`, which does nothing else:
+
+```tsx
+import { W98Root, Button } from 'w98-ascii-design-system';
+
+<W98Root>
+  <Button variant="default-action">OK</Button>
+</W98Root>;
+```
+
+Components are not blank without it — they carry their own bevels and colours —
+but they render in the browser's default font with content-box padding, which
+reads as broken.
 
 ## Scripts
 

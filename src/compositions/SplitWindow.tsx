@@ -67,9 +67,14 @@ export function SplitWindow({
       <div
         className="w98-split-window__grid"
         style={
+          /*
+           * The splitter is a real grid item, so it needs its own track. Without
+           * it the template has two tracks for three children and the secondary
+           * pane wraps onto a second row instead of sitting beside the primary.
+           */
           orientation === 'horizontal'
-            ? { gridTemplateColumns: `${clamped * 100}% 1fr` }
-            : { gridTemplateRows: `${clamped * 100}% 1fr` }
+            ? { gridTemplateColumns: splitter ? `${clamped * 100}% auto 1fr` : `${clamped * 100}% 1fr` }
+            : { gridTemplateRows: splitter ? `${clamped * 100}% auto 1fr` : `${clamped * 100}% 1fr` }
         }
       >
         <div className={cx('w98-split-window__pane', `w98-split-window__pane--${primarySurface}`)}>{primary}</div>

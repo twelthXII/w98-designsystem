@@ -16,9 +16,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/styles/index.css",
+    "./styles.css": "./dist/styles/w98.css",
     "./tokens.css": "./dist/styles/tokens.css",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./styles/index.css": "./dist/styles/index.css"
   },
   "files": [
     "dist",
@@ -28,7 +29,7 @@
   "scripts": {
     "tokens": "tsx scripts/generate-tokens.ts",
     "typecheck": "tsc --noEmit",
-    "build": "npm run tokens && tsc -p tsconfig.build.json && node scripts/copy-css.mjs",
+    "build": "npm run tokens && tsc -p tsconfig.build.json && node scripts/copy-css.mjs && node scripts/bundle-css.mjs",
     "dev": "vite",
     "build:playground": "vite build",
     "check": "npm run tokens && npm run typecheck && npm run smoke",

@@ -1,3 +1,7 @@
+/* Environment */
+export { W98Root } from './W98Root';
+export type { W98RootProps } from './W98Root';
+
 /* Window chrome */
 export { Window } from './window/Window';
 export type { WindowProps } from './window/Window';

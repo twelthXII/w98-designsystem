@@ -1,0 +1,21 @@
+{
+  "projectId": "de00a72c-df41-4469-8ea3-b0303183aea8",
+  "shape": "package",
+  "pkg": "w98-ascii-design-system",
+  "globalName": "W98",
+  "buildCmd": "npm run build",
+  "srcDir": "src",
+  "tsconfig": "tsconfig.json",
+  "cssEntry": "dist/styles/w98.css",
+  "tokensGlob": "dist/styles/token*.css",
+  "provider": {
+    "component": "W98Root"
+  },
+  "docsMap": {
+    "Window": ".design-sync/groups/Window.md",
+    "RadioGroup": ".design-sync/groups/RadioGroup.md",
+    "StatusBarField": ".design-sync/groups/StatusBarField.md",
+    "W98Root": ".design-sync/groups/W98Root.md"
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}

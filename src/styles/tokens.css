@@ -47,9 +47,9 @@
   --w98-color-scrim: rgba(0, 0, 0, 0.45);
 
   /* TYPE — UI type, editorial display type, and the monospaced ASCII family. */
-  --w98-type-family-ui: "Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, "Segoe UI", system-ui, sans-serif;
-  --w98-type-family-display: "Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, "Segoe UI", system-ui, sans-serif;
-  --w98-type-family-mono: "MS Gothic", "IBM Plex Mono", "Courier New", ui-monospace, SFMono-Regular, monospace;
+  --w98-type-family-ui: "Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif;
+  --w98-type-family-display: "Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif;
+  --w98-type-family-mono: Consolas, Menlo, "DejaVu Sans Mono", "Liberation Mono", "Courier New", monospace;
   --w98-type-size-ui-xs: 11px;
   --w98-type-size-ui-sm: 12px;
   --w98-type-size-ui-md: 14px;
