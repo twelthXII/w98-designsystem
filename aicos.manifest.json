@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "design_system_id": "w98-ascii",
+  "name": "W98 ASCII Design System",
+  "consumption": {
+    "strategy": "source"
+  },
+  "entrypoints": {
+    "tokens": "src/styles/tokens.css",
+    "styles": "src/styles/index.css",
+    "motion": "docs/MOTION.md",
+    "docs": "docs",
+    "vocabulary": {
+      "kind": "css-classes",
+      "index": "docs/COMPONENTS.md"
+    }
+  },
+  "capabilities": {
+    "formats": ["instagram_carousel"],
+    "motion": {
+      "language": true,
+      "first_frame": true
+    },
+    "static_render": true
+  }
+}
